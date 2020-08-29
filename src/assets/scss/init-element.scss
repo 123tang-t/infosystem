@@ -1,0 +1,26 @@
+.el-table {
+    thead {
+        th {
+            padding: 6px 0;
+            color: #5c6769;
+            background: #64b8f0;
+            border-right: 1px solid #fff;
+        }
+    }
+}
+.el-dialog {
+    .el-dialog__header {
+        text-align: center;
+    }
+}
+.el-form {
+    .el-input {
+        width: 250px;
+    }
+    .el-form-item {
+        text-align: left;
+    }
+}
+// .el-input {
+    
+// }
