@@ -11,7 +11,7 @@ const routes: Array<RouteConfig> = [
         component: Home,
         children: [
             {
-                path: '/system/menu-manage',
+                path: '/menuManage',
                 name: 'MenuManage',
                 component: () => import(/* webpackChunkName: "about" */ '../views/system/MenuManage.vue')
             }
