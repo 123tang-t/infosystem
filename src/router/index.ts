@@ -14,6 +14,11 @@ const routes: Array<RouteConfig> = [
                 path: '/menuManage',
                 name: 'MenuManage',
                 component: () => import(/* webpackChunkName: "about" */ '../views/system/MenuManage.vue')
+            },
+            {
+                path: '/vacationRecord',
+                name: 'VacationRecord',
+                component: () => import(/* webpackChunkName: "about" */ '../views/vacation/VacationRecordList.vue')
             }
         ]
     },

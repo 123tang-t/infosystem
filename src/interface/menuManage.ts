@@ -4,6 +4,6 @@ export interface Menu {
     RouteName: string;
     RouteUrl: string;
     IsShow: number;
-    RouterOrder: number;
+    RouteOrder: number | null;
     ParentId: number | null;
 }

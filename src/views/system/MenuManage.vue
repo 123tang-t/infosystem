@@ -86,19 +86,20 @@
             <el-form
                 ref="menu"
                 :model="menu"
+                :rules="menuRules"
                 label-width="100px">
                 <el-form-item
                     prop="RouteName"
                     label="名称">
                     <el-input
-                        v-model="menu.RouteName"
+                        v-model.trim="menu.RouteName"
                         size="small" />
                 </el-form-item>
                 <el-form-item
                     prop="RouteUrl"
                     label="路由">
                     <el-input
-                        v-model="menu.RouteUrl"
+                        v-model.trim="menu.RouteUrl"
                         size="small" />
                 </el-form-item>
                 <el-form-item
@@ -113,7 +114,7 @@
                     prop="RouteOrder"
                     label="顺序">
                     <el-input
-                        v-model="menu.RouteOrder"
+                        v-model.trim.number="menu.RouteOrder"
                         size="small" />
                 </el-form-item>
             </el-form>
@@ -137,7 +138,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import { Menu } from '@/interface/menuManage'
 import { Pagination } from '@/interface/public'
 // import { RequestGetMenuList } from '@/request/menuManage'
-// import { ElForm } from 'element-ui/types/form'
+import { ElForm } from 'element-ui/types/form'
 import { ElTable } from 'element-ui/types/table'
 import axios from 'axios'
 
@@ -163,8 +164,20 @@ export default class MenuManage extends Vue {
         RouteName: '',
         RouteUrl: '',
         IsShow: 1,
-        RouterOrder: 0,
+        RouteOrder: null,
         ParentId: null
+    }
+
+    // 弹窗表单验证规则
+    menuRules: ElForm['rules'] = {
+        RouteName: [{
+            required: true,
+            message: '请输入菜单名称'
+        }],
+        RouteUrl: [{
+            required: true,
+            message: '请输入菜单路由'
+        }]
     }
 
     // 是否显示菜单弹窗
@@ -228,7 +241,12 @@ export default class MenuManage extends Vue {
 
     // 点击弹窗确定按钮触发
     onConfirmMenuDislog () {
-        this.subMenuForm()
+        const menuForm = this.$refs.menu as ElForm
+        menuForm.validate(valid => {
+            if (valid) {
+                this.subMenuForm()
+            }
+        })
     }
 
     // 显示菜单弹窗
@@ -248,9 +266,13 @@ export default class MenuManage extends Vue {
             RouteName: '',
             RouteUrl: '',
             IsShow: 1,
-            RouterOrder: 0,
+            RouteOrder: null,
             ParentId: null
         }
+        this.$nextTick(() => {
+            const menuForm = this.$refs.menu as ElForm
+            menuForm.clearValidate()
+        })
     }
 
     // 改变页面编码的时候触发
@@ -304,6 +326,7 @@ export default class MenuManage extends Vue {
                         this.closeMenuDiaog()
                         this.resetMenuForm()
                         this.fetchMenuList()
+                        this.$emit('refresh')
                     }
                 })
         } else {
@@ -314,6 +337,7 @@ export default class MenuManage extends Vue {
                         this.closeMenuDiaog()
                         this.resetMenuForm()
                         this.fetchMenuList()
+                        this.$emit('refresh')
                     }
                 })
         }
@@ -335,6 +359,7 @@ export default class MenuManage extends Vue {
                         type: 'success',
                         message: '删除成功'
                     })
+                    this.$emit('refresh')
                 }
             })
     }

@@ -10,7 +10,7 @@
             {{menu.RouteName}}
         </div>
     </div>
-    <router-view/>
+    <router-view @refresh="refreshPage"/>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
             axios.get('api/menu/list', {
                 params: {
                     Page: 1,
-                    PageSize: 100
+                    PageSize: 20
                 }
             })
                 .then((result) => {
@@ -49,6 +49,10 @@ export default {
             this.$router.push({
                 path: url
             })
+        },
+
+        refreshPage () {
+            this.fetchMenuList()
         }
     }
 }
@@ -61,13 +65,25 @@ export default {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        background: #fff;
-        border-radius: 5px;
+        padding: 0 0 0 5px;
+        height: 36px;
+        background: #0081cc;
+        border-radius: 4px;
         .menu {
             padding: 0 10px;
-            // min-width: 60px;
             height: 30px;
-            line-height: 30px;
+            line-height: 32px;
+            color: #fff;
+            font-size: 14px;
+            user-select: none;
+            border: 3px solid #0081cc;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background: #fff;
+                color: #000;
+                border-bottom: 3px solid #fff;
+            }
         }
     }
 }
