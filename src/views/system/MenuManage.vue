@@ -290,12 +290,14 @@ export default class MenuManage extends Vue {
             }
         })
             .then((result) => {
-                this.menuList = result.data.Data.List
-                this.menuPagination = {
-                    Page: result.data.Data.Page,
-                    PageSize: result.data.Data.PageSize,
-                    PageCount: result.data.Data.PageCount,
-                    TotalCount: result.data.Data.TotalCount
+                if (result.data.Code === 1) {
+                    this.menuList = result.data.Data.List
+                    this.menuPagination = {
+                        Page: result.data.Data.Page,
+                        PageSize: result.data.Data.PageSize,
+                        PageCount: result.data.Data.PageCount,
+                        TotalCount: result.data.Data.TotalCount
+                    }
                 }
             })
     }
@@ -321,7 +323,6 @@ export default class MenuManage extends Vue {
         if (this.menu.Id) {
             axios.post('/api/menu/edit', this.menu)
                 .then((result) => {
-                    console.log(result)
                     if (result.data.Code === 1) {
                         this.closeMenuDiaog()
                         this.resetMenuForm()
