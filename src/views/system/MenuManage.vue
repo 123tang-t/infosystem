@@ -1,7 +1,7 @@
 <template>
     <section class="page-menu-manage">
-        <!-- 菜单按键 -->
         <div class="module">
+            <!-- 菜单按键 -->
             <div class="row">
                 <div class="btn">
                     <el-button

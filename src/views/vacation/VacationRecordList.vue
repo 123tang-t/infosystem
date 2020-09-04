@@ -85,7 +85,7 @@ export default class VacationList extends Vue {
     ]
 
     // 请假页码
-    vacationPagination = {
+    vacationPagination: Pagination = {
         Page: 1,
         PageSize: 20,
         PageCount: 0,
@@ -105,7 +105,6 @@ export default class VacationList extends Vue {
     fetchVavationList () {
         axios.get('/api/vacation/application/history?Page=1&PageSize=20')
             .then((result) => {
-                console.log(result)
                 if (result.data.Code === 1) {
                     this.vacationList = result.data.Data.List
                 }

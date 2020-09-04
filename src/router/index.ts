@@ -19,6 +19,11 @@ const routes: Array<RouteConfig> = [
                 path: '/vacationRecord',
                 name: 'VacationRecord',
                 component: () => import(/* webpackChunkName: "about" */ '../views/vacation/VacationRecordList.vue')
+            },
+            {
+                path: '/notApproved',
+                name: 'NotApproved',
+                component: () => import(/* webpackChunkName: "about" */ '../views/vacation/NotApprovedList.vue')
             }
         ]
     },

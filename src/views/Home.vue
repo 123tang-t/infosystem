@@ -33,7 +33,7 @@ export default {
             axios.get('api/menu/list', {
                 params: {
                     Page: 1,
-                    PageSize: 20
+                    PageSize: 100
                 }
             })
                 .then((result) => {
