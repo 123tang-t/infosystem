@@ -4,20 +4,15 @@
             <div class="row">
                 <div class="btn">
                     <el-button
-                        size="small"
-                        @click="onAddNotApproved">
+                        size="small">
                         新增
                     </el-button>
                     <el-button
-                        size="small"
-                        @click="onEditApproved"
-                        :disabled="selection.length !== 1">
+                        size="small">
                         编辑
                     </el-button>
                     <el-button
-                        size="small"
-                        @click="onDeleteApproved"
-                        :disabled="selection.length < 1">
+                        size="small">
                         删除
                     </el-button>
                 </div>
