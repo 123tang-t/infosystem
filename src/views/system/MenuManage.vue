@@ -137,7 +137,6 @@
 import { Vue, Component } from 'vue-property-decorator'
 import { Menu } from '@/interface/menuManage'
 import { Pagination } from '@/interface/public'
-// import { RequestGetMenuList } from '@/request/menuManage'
 import { ElForm } from 'element-ui/types/form'
 import { ElTable } from 'element-ui/types/table'
 import axios from 'axios'
@@ -301,22 +300,6 @@ export default class MenuManage extends Vue {
                 }
             })
     }
-    // async fetchMenuList () {
-    //     this.menuList = []
-    //     const result: any = await RequestGetMenuList({
-    //         Page: this.menuPagination.Page,
-    //         PageSize: this.menuPagination.PageSize,
-    //         Name: this.searchInfo
-    //     })
-    //     const data = result.data
-    //     this.menuPagination = {
-    //         Page: data.Page,
-    //         PageSize: data.PageSize,
-    //         PageCount: data.PageCount,
-    //         TotalCount: data.TotalCount
-    //     }
-    //     this.menuList = data.List
-    // }
 
     // 提交菜单表单
     subMenuForm () {
